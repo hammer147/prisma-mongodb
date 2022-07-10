@@ -1,34 +1,58 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Nextjs with Prisma, MongoDB and Zod
 
-## Getting Started
+## some tutorial stuff
 
-First, run the development server:
+[mongodb with prisma in Nextjs](https://www.youtube.com/watch?v=szmyVU59-K0)
 
-```bash
-npm run dev
-# or
-yarn dev
+[mongodb with prisma](https://www.youtube.com/watch?v=b4nxOv91vWI)
+
+[zod user input validation](https://www.youtube.com/watch?v=_K34O0NcKAM)
+
+[zod docs](zod.dev)
+
+## setup
+
+```console
+npm i -D prisma
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+add .env to .gitignore
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+set DATABASE_URL in .env (first create a db in Atlas)
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+in prisma/schema.prisma:
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+in datasource db: set provider = "mongodb"
 
-## Learn More
+generator client <-- DO WE NEED THIS??
 
-To learn more about Next.js, take a look at the following resources:
+add a model, e.g. User {}
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```console
+npx prisma db push
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+this will create a collection with the same name as your model
 
-## Deploy on Vercel
+```console
+npx prisma studio
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+this wil open on localhost:5555
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+we can select a collection and crud records (documents)
+
+```console
+npm i @prisma/client
+npx prisma generate
+```
+
+IS PRISMA GENERATE NEEDED??
+
+create /server/db/client.ts
+
+copy code from [prisma docs](https://www.prisma.io/docs/guides/database/troubleshooting-orm/help-articles/nextjs-prisma-client-dev-practices#solution)
+
+## To do
+
+validate user data with zod
