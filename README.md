@@ -24,8 +24,6 @@ in prisma/schema.prisma:
 
 in datasource db: set provider = "mongodb"
 
-generator client <-- DO WE NEED THIS??
-
 add a model, e.g. User {}
 
 ```console
@@ -46,8 +44,6 @@ we can select a collection and crud records (documents)
 npm i @prisma/client
 npx prisma generate
 ```
-
-IS PRISMA GENERATE NEEDED??
 
 create /server/db/client.ts
 
